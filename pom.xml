@@ -1,0 +1,16 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.vaadin.alump</groupId>
+    <artifactId>scaleimage</artifactId>
+    <version>0.1.0</version>
+    <packaging>pom</packaging>
+    <name>ScaleImage Maven project</name>
+    
+    <modules>
+        <module>scaleimage-addon</module>
+        <module>scaleimage-demo</module>
+    </modules>
+    
+    <properties>
+    </properties>
+</project>
