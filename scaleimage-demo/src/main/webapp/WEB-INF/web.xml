@@ -21,7 +21,7 @@
             Application widgetset</description>
             <param-name>widgetset</param-name>
             <param-value>org.vaadin.alump.scaleimage.demo.ScaleImageDemoWidgetset</param-value>
-        </init-param>>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>ScaleImage Demo Application</servlet-name>

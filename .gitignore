@@ -1,0 +1,12 @@
+.project
+.settings/
+scaleimage-addon/.classpath
+scaleimage-addon/.project
+scaleimage-addon/.settings/
+scaleimage-addon/target/
+scaleimage-demo/.classpath
+scaleimage-demo/.project
+scaleimage-demo/.settings/
+scaleimage-demo/src/main/webapp/VAADIN/gwt-unitCache/
+scaleimage-demo/src/main/webapp/VAADIN/widgetsets/
+scaleimage-demo/target/

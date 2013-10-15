@@ -25,6 +25,8 @@ import com.vaadin.event.LayoutEvents.LayoutClickEvent;
 import com.vaadin.event.LayoutEvents.LayoutClickListener;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
@@ -34,52 +36,78 @@ import com.vaadin.ui.UI;
 @Theme("demo")
 public class DemoUI extends UI {
 
-	@Override
-	protected void init(VaadinRequest request) {
-		CssLayout layout = new CssLayout();
-		layout.setSizeFull();
-		setContent(layout);
-		
-		// Big image that will scale to match with your page width, will
-		// show the center of given picture. See SCSS file.
-		ScaleImage bigCenterImage = new ScaleImage();
-		bigCenterImage.setWidth("100%");
-		bigCenterImage.setHeight("200px");
-		bigCenterImage.setStyleName("big-center-image");
-		bigCenterImage.setSource(new ThemeResource("images/big-center-image.jpg"));
-		layout.addComponent(bigCenterImage);
-		
-		
-		// Tile with image, where images will be scaled to match with tile size.
-		// tileimage will cover space of tile and indicator image will be at
-		// top left corner.
-		// Uses absolute left/right/top/down positioning. See SCSS file.
-		final CssLayout tile = new CssLayout();
-		tile.setStyleName("tile");
-		tile.setWidth(100, Unit.PIXELS);
-		tile.setHeight(100, Unit.PIXELS);
-		layout.addComponent(tile);
-		tile.addLayoutClickListener(new LayoutClickListener() {
+    private ExtendedScaleImage extendedImage;
 
-			@Override
-			public void layoutClick(LayoutClickEvent event) {
-				int size = (int)Math.round(100.0 + Math.random() * 100.0);
-				tile.setWidth(size, Unit.PIXELS);
-				tile.setHeight(size, Unit.PIXELS);
-			}
-			
-		});
-		
-		ScaleImage tileImage = new ScaleImage();
-		tileImage.setSource(new ThemeResource("images/tile-image.jpg"));
-		tileImage.setStyleName("tile-image");
-		tile.addComponent(tileImage);
-		ScaleImage indicatorImage = new ScaleImage();
-		indicatorImage.setSource(new ThemeResource("images/tile-indicator.png"));
-		indicatorImage.setStyleName("tile-indicator");
-		tile.addComponent(indicatorImage);
-		Label tileLabel = new Label("Click tile to scale it.");
-		tile.addComponent(tileLabel);
-	}
+    @Override
+    protected void init(VaadinRequest request) {
+        CssLayout layout = new CssLayout();
+        layout.setSizeFull();
+        setContent(layout);
+
+        // Big image that will scale to match with your page width, will
+        // show the center of given picture. See SCSS file.
+        ScaleImage bigCenterImage = new ScaleImage();
+        bigCenterImage.setWidth("100%");
+        bigCenterImage.setHeight("200px");
+        bigCenterImage.setStyleName("big-center-image");
+        bigCenterImage.setSource(new ThemeResource(
+                "images/big-center-image.jpg"));
+        layout.addComponent(bigCenterImage);
+
+        // Tile with image, where images will be scaled to match with tile size.
+        // tileimage will cover space of tile and indicator image will be at
+        // top left corner.
+        // Uses absolute left/right/top/down positioning. See SCSS file.
+        final CssLayout tile = new CssLayout();
+        tile.setStyleName("tile");
+        tile.setWidth(100, Unit.PIXELS);
+        tile.setHeight(100, Unit.PIXELS);
+        layout.addComponent(tile);
+        tile.addLayoutClickListener(new LayoutClickListener() {
+
+            @Override
+            public void layoutClick(LayoutClickEvent event) {
+                int size = (int) Math.round(100.0 + Math.random() * 100.0);
+                tile.setWidth(size, Unit.PIXELS);
+                tile.setHeight(size, Unit.PIXELS);
+            }
+
+        });
+
+        ScaleImage tileImage = new ScaleImage();
+        tileImage.setSource(new ThemeResource("images/tile-image.jpg"));
+        tileImage.setStyleName("tile-image");
+        tile.addComponent(tileImage);
+        ScaleImage indicatorImage = new ScaleImage();
+        indicatorImage
+                .setSource(new ThemeResource("images/tile-indicator.png"));
+        indicatorImage.setStyleName("tile-indicator");
+        tile.addComponent(indicatorImage);
+        Label tileLabel = new Label("Click tile to scale it.");
+        tile.addComponent(tileLabel);
+
+        extendedImage = new ExtendedScaleImage();
+        extendedImage.setSource(new ThemeResource("images/tile-indicator.png"));
+        extendedImage.setWidth("200px");
+        extendedImage.setHeight("400px");
+        extendedImage.setStyleName("extended-image");
+        layout.addComponent(extendedImage);
+
+        Button moveButton = new Button("Move background",
+                new Button.ClickListener() {
+
+                    @Override
+                    public void buttonClick(ClickEvent event) {
+                        Boolean val = extendedImage.getPosition();
+                        if (val == null) {
+                            val = true;
+                        }
+
+                        extendedImage.setPosition(!val.booleanValue());
+
+                    }
+                });
+        layout.addComponent(moveButton);
+    }
 
 }

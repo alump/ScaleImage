@@ -21,6 +21,7 @@ import org.vaadin.alump.scaleimage.gwt.client.GScaleImage;
 import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageState;
 
 import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.dom.client.Style;
 import com.vaadin.client.communication.StateChangeEvent;
 import com.vaadin.client.ui.AbstractComponentConnector;
 import com.vaadin.client.ui.ClickEventHandler;
@@ -54,6 +55,16 @@ public class ScaleImageConnector extends AbstractComponentConnector {
 		
 		String url = getResourceUrl(AbstractEmbeddedState.SOURCE_RESOURCE);
         getWidget().setUrl(url);
+        
+        for(String property : getState().styleValues.keySet()) {
+        	String value = getState().styleValues.get(property);
+        	Style elementStyle = getWidget().getElement().getStyle();
+        	if(value == null || value.isEmpty()) {
+        		elementStyle.clearProperty(property);
+        	} else {
+        		elementStyle.setProperty(property, value);
+        	}
+        }
 	}
 	
     protected final ClickEventHandler clickEventHandler = new ClickEventHandler(

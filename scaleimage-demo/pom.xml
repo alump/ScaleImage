@@ -10,15 +10,15 @@
 	<version>${scaleimage.version}</version>
 
 	<properties>
-		<scaleimage.version>0.1.0</scaleimage.version>
+		<scaleimage.version>0.2.0</scaleimage.version>
 		<Implementation-Version>${project.version}</Implementation-Version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- May be overridden by the build system -->
 		<license.short.name>apache2</license.short.name>
-		<vaadin.version>7.1.1</vaadin.version>
-		<vaadin.plugin.version>7.1.1</vaadin.plugin.version>
+		<vaadin.version>7.1.7</vaadin.version>
+		<vaadin.plugin.version>7.1.7</vaadin.plugin.version>
 
 		<!-- Must not change this because of the Directory -->
 		<Implementation-Title>ScaleImage</Implementation-Title>
@@ -72,6 +72,11 @@
 			<artifactId>vaadin-themes</artifactId>
 			<version>${vaadin.version}</version>
 		</dependency>
+		<dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiler</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-theme-compiler</artifactId>
