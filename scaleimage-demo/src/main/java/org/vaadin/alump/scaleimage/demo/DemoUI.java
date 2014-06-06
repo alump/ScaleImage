@@ -17,6 +17,8 @@
  */
 package org.vaadin.alump.scaleimage.demo;
 
+import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.server.VaadinServlet;
 import org.vaadin.alump.scaleimage.ScaleImage;
 
 import com.vaadin.annotations.Theme;
@@ -31,10 +33,17 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 
+import javax.servlet.annotation.WebServlet;
+
 @SuppressWarnings("serial")
 @Title("Demo of ScaleImage")
 @Theme("demo")
 public class DemoUI extends UI {
+
+    @WebServlet(value = "/*")
+    @VaadinServletConfiguration(productionMode = false, ui = DemoUI.class, widgetset = "org.vaadin.alump.scaleimage.demo.ScaleImageDemoWidgetset")
+    public static class DemoServlet extends VaadinServlet {
+    }
 
     private ExtendedScaleImage extendedImage;
 
