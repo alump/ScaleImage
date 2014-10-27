@@ -47,8 +47,10 @@ public class DemoUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        CssLayout layout = new CssLayout();
-        layout.setSizeFull();
+        VerticalLayout layout = new VerticalLayout();
+        layout.setWidth(100, Unit.PERCENTAGE);
+        layout.setMargin(true);
+        layout.setSpacing(true);
         setContent(layout);
 
         // Big image that will scale to match with your page width, will
@@ -120,6 +122,26 @@ public class DemoUI extends UI {
                     }
                 });
         layout.addComponent(moveButton);
+
+        // Test how well scale image behaves inside alignment layout
+
+        HorizontalLayout alignLayout = new HorizontalLayout();
+        alignLayout.setSpacing(true);
+        alignLayout.setWidth("200px");
+        layout.addComponent(alignLayout);
+
+        Label label = new Label("Alignment test:");
+        label.addStyleName("align-label");
+        alignLayout.addComponent(label);
+        alignLayout.setExpandRatio(label, 1.0f);
+        alignLayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
+
+        ScaleImage alignImage = new ScaleImage();
+        alignImage.setSource(new ThemeResource("images/tile-image.jpg"));
+        alignImage.setWidth("20px");
+        alignImage.setHeight("20px");
+        alignLayout.addComponent(alignImage);
+        alignLayout.setComponentAlignment(alignImage, Alignment.BOTTOM_CENTER);
     }
 
 }

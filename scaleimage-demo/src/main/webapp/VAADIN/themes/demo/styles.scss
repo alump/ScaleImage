@@ -1,7 +1,7 @@
-@import "../reindeer/reindeer.scss";
+@import "../valo/valo";
 
 .demo {
-    @include reindeer;
+    @include valo;
     
     .big-center-image {
         background-position: center center;
@@ -45,5 +45,9 @@
             max-width: 40px;
             max-height: 40px;
         }
+    }
+
+    .align-label {
+      text-align: right;
     }
 }

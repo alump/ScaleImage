@@ -14,3 +14,4 @@ scaleimage-demo/src/main/webapp/VAADIN/widgetsets/
 scaleimage-demo/target/
 scaleimage-demo/scaleimage-demo.iml
 scaleimage.iml
+scaleimage-demo/src/main/webapp/VAADIN/themes/demo/styles.css
