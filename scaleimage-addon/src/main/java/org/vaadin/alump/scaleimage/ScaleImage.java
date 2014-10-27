@@ -17,6 +17,8 @@
  */
 package org.vaadin.alump.scaleimage;
 
+import com.vaadin.event.MouseEvents;
+import com.vaadin.shared.EventId;
 import org.vaadin.alump.scaleimage.gwt.client.conn.ScaleImageServerRpc;
 import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageState;
 
@@ -133,6 +135,24 @@ public class ScaleImage extends AbstractEmbedded {
         if (getState().styleValues.containsKey(property)) {
             getState().styleValues.put(property, null);
         }
+    }
+
+    /**
+     * Add click listener
+     * @param listener Listener added
+     */
+    public void addClickListener(MouseEvents.ClickListener listener) {
+        addListener(EventId.CLICK_EVENT_IDENTIFIER, ClickEvent.class, listener,
+                MouseEvents.ClickListener.clickMethod);
+    }
+
+    /**
+     * Remove click listener
+     * @param listener Listener removed
+     */
+    public void removeClickListener(MouseEvents.ClickListener listener) {
+        removeListener(EventId.CLICK_EVENT_IDENTIFIER, ClickEvent.class,
+                listener);
     }
 
 }

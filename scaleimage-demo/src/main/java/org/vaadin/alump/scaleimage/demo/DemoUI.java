@@ -18,7 +18,9 @@
 package org.vaadin.alump.scaleimage.demo;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.event.MouseEvents;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.*;
 import org.vaadin.alump.scaleimage.ScaleImage;
 
 import com.vaadin.annotations.Theme;
@@ -27,11 +29,7 @@ import com.vaadin.event.LayoutEvents.LayoutClickEvent;
 import com.vaadin.event.LayoutEvents.LayoutClickListener;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.UI;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -59,8 +57,13 @@ public class DemoUI extends UI {
         bigCenterImage.setWidth("100%");
         bigCenterImage.setHeight("200px");
         bigCenterImage.setStyleName("big-center-image");
-        bigCenterImage.setSource(new ThemeResource(
-                "images/big-center-image.jpg"));
+        bigCenterImage.setSource(new ThemeResource("images/big-center-image.jpg"));
+        bigCenterImage.addClickListener(new MouseEvents.ClickListener() {
+            @Override
+            public void click(MouseEvents.ClickEvent clickEvent) {
+                Notification.show("Big center image clicked!");
+            }
+        });
         layout.addComponent(bigCenterImage);
 
         // Tile with image, where images will be scaled to match with tile size.
