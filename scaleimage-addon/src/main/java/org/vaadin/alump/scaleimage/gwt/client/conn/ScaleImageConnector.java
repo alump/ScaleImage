@@ -74,6 +74,7 @@ public class ScaleImageConnector extends AbstractComponentConnector {
         protected void fireClick(NativeEvent event,
                 MouseEventDetails mouseDetails) {
             getRpcProxy(ScaleImageServerRpc.class).click(mouseDetails);
+            event.stopPropagation();
         }
 
     };
