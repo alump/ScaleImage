@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<name>ScaleImage demo</name>
 	<description>ScaleImage Demo Application</description>
-	<version>0.2.4</version>
+	<version>0.3.0-SNAPSHOT</version>
 
 	<properties>
 		<Implementation-Version>${project.version}</Implementation-Version>
@@ -16,8 +16,8 @@
 
 		<!-- May be overridden by the build system -->
 		<license.short.name>apache2</license.short.name>
-		<vaadin.version>7.3.3</vaadin.version>
-		<vaadin.plugin.version>7.3.3</vaadin.plugin.version>
+		<vaadin.version>7.6.4</vaadin.version>
+		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 
 		<!-- Must not change this because of the Directory -->
 		<Implementation-Title>ScaleImage</Implementation-Title>
@@ -91,8 +91,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
@@ -112,7 +112,7 @@
 					<force>true</force>
 					<extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
 					<noServer>true</noServer>
-					<runTarget>http://localhost:8080/scaleimage</runTarget>
+					<runTarget>http://localhost:8080/</runTarget>
 					<port>8080</port>
 					<draftCompile>true</draftCompile>
 					<!-- <style>OBF</style> -->
@@ -126,9 +126,10 @@
 					<execution>
 						<goals>
 							<goal>resources</goal>
-							<goal>compile</goal>
-							<goal>test</goal>
+							<goal>update-widgetset</goal>
 							<goal>compile-theme</goal>
+							<goal>update-theme</goal>
+							<goal>compile</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -182,20 +183,15 @@
 
 			<!-- Jetty is used for development testing -->
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.13.v20130916</version>
+				<version>9.2.6.v20141205</version>
 				<configuration>
-					<stopPort>9966</stopPort>
-					<stopKey>scaleimage</stopKey>
-					<scanIntervalSeconds>0</scanIntervalSeconds>
-					<!-- make sure Jetty also finds the widgetset -->
-					<webAppConfig>
-						<contextPath>/scaleimage</contextPath>
-					</webAppConfig>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
 				</configuration>
 			</plugin>
-
 
 			<!-- This is used to autodeploy demo to Tomcat in CI -->
 			<plugin>

@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.vaadin.alump.scaleimage</groupId>
 	<artifactId>scaleimage-addon</artifactId>
-	<packaging>jar</packaging>
+	<packaging>bundle</packaging>
 	<name>ScaleImage addon</name>
-	<version>0.2.4</version>
+	<version>0.3.0-SNAPSHOT</version>
 
 	<description>ScaleImage Vaadin 7 addon</description>
 
@@ -31,8 +31,8 @@
 
 		<!-- May be overridden by the build system -->
 		<license.short.name>apache2</license.short.name>
-		<vaadin.version>7.3.3</vaadin.version>
-		<vaadin.plugin.version>7.3.3</vaadin.plugin.version>
+		<vaadin.version>7.6.4</vaadin.version>
+		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 
 		<snapshot.repository.url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</snapshot.repository.url>
 
@@ -41,6 +41,8 @@
 		<Implementation-Title>ScaleImage</Implementation-Title>
 		<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
 		<Vaadin-Addon>ScaleImage-${project.version}.jar</Vaadin-Addon>
+		<Vaadin-Widgetsets>org.vaadin.alump.scaleimage.gwt.ScaleImageWidgetset</Vaadin-Widgetsets>
+		<Vaadin-Stylesheets>VAADIN/addons/scaleimage/scaleimage.scss</Vaadin-Stylesheets>
 
 	</properties>
 
@@ -95,11 +97,6 @@
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -139,10 +136,21 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
 				<configuration>
+					<instructions>
+						<Export-Package>
+							org.vaadin.alump.scaleimage,
+							org.vaadin.alump.scaleimage.gwt.client.share
+						</Export-Package>
+						<Import-Package>com.vaadin.data;version="[7.4,8)",
+							com.vaadin.shared;version="[7.4,8)",
+							com.vaadin.shared.communication;version="[7.4,8)",
+							com.vaadin.shared.ui;version="[7.4,8)",
+							com.vaadin.ui;version="[7.4,8)"</Import-Package>
+					</instructions>
 					<archive>
 						<index>true</index>
 						<manifest>
@@ -159,15 +167,21 @@
 							<Vaadin-Package-Version>1</Vaadin-Package-Version>
 
 							<!-- Comma-separated list of widgetsets in the package -->
-							<Vaadin-Widgetsets>org.vaadin.alump.scaleimage.gwt.ScaleImageWidgetset</Vaadin-Widgetsets>
+							<Vaadin-Widgetsets>${Vaadin-Widgetsets}</Vaadin-Widgetsets>
+
+							<Vaadin-Stylesheets>${Vaadin-Stylesheets}</Vaadin-Stylesheets>
 						</manifestEntries>
 					</archive>
-					<!-- exclude other META-INF data under build directory -->
-					<includes>
-						<include>META-INF/maven/${project.groupId}/${project.artifactId}/**</include>
-						<include>org/**</include>
-					</includes>
 				</configuration>
+				<executions>
+					<execution>
+						<id>bundle-manifest</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
@@ -208,6 +222,20 @@
 				</executions>
 			</plugin>
 		</plugins>
+
+		<!-- This is needed for the sources required by the client-side compiler to be included in the produced JARs -->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<excludes>
+					<exclude>rebel.xml</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+
 		<finalName>ScaleImage-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>

@@ -19,7 +19,7 @@ package org.vaadin.alump.scaleimage;
 
 import com.vaadin.event.MouseEvents;
 import com.vaadin.shared.EventId;
-import org.vaadin.alump.scaleimage.gwt.client.conn.ScaleImageServerRpc;
+import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageServerRpc;
 import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageState;
 
 import com.vaadin.event.MouseEvents.ClickEvent;
@@ -36,25 +36,32 @@ import com.vaadin.ui.AbstractEmbedded;
 @SuppressWarnings("serial")
 public class ScaleImage extends AbstractEmbedded {
 
-    protected ScaleImageServerRpc rpc = new ScaleImageServerRpc() {
+    protected final ScaleImageServerRpc rpc = new ScaleImageServerRpc() {
         @Override
         public void click(MouseEventDetails mouseDetails) {
             fireEvent(new ClickEvent(ScaleImage.this, mouseDetails));
         }
     };
 
+    /**
+     * Construct ScaleImage
+     */
     public ScaleImage() {
         registerRpc(rpc, ScaleImageServerRpc.class);
         setSizeUndefined();
     }
 
+    /**
+     * Construct ScaleImage with a caption
+     * @param caption
+     */
     public ScaleImage(String caption) {
         this();
         setCaption(caption);
     }
 
     /**
-     * Construct scale image with image source
+     * Construct ScaleImage with a title and an image source
      * 
      * @param caption
      * @param source
@@ -65,7 +72,7 @@ public class ScaleImage extends AbstractEmbedded {
     }
 
     /**
-     * Construct scale image with image source
+     * Construct ScaleImage with image source
      * 
      * @param source
      */
@@ -75,7 +82,7 @@ public class ScaleImage extends AbstractEmbedded {
     }
 
     /**
-     * Construct scale image with image source and style name
+     * Construct ScaleImage with a caption, an image source and a style name
      * 
      * @param caption
      *            Caption of component
@@ -91,7 +98,7 @@ public class ScaleImage extends AbstractEmbedded {
     }
 
     /**
-     * Construct scale image with image source and style name
+     * Construct ScaleImage with an image source and a style name
      * 
      * @param source
      *            Image source

@@ -3,5 +3,6 @@ Implementation-Title: ScaleImage
 Implementation-Version: ${Implementation-Version}
 Vaadin-Package-Version: 1
 Vaadin-Widgetsets: org.vaadin.alump.scaleimage.gwt.ScaleImageWidgetset
+Vaadin-Stylesheets: ${Vaadin-Stylesheets}
 Vaadin-Addon: ${Vaadin-Addon}
 Implementation-Vendor: ${Implementation-Vendor}

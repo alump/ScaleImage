@@ -56,16 +56,11 @@ public class DemoUI extends UI {
         // Big image that will scale to match with your page width, will
         // show the center of given picture. See SCSS file.
         ScaleImage bigCenterImage = new ScaleImage();
-        bigCenterImage.setWidth("100%");
-        bigCenterImage.setHeight("200px");
+        bigCenterImage.setWidth(100, Unit.PERCENTAGE);
+        bigCenterImage.setHeight(200, Unit.PIXELS);
         bigCenterImage.setStyleName("big-center-image");
         bigCenterImage.setSource(new ThemeResource("images/big-center-image.jpg"));
-        bigCenterImage.addClickListener(new MouseEvents.ClickListener() {
-            @Override
-            public void click(MouseEvents.ClickEvent clickEvent) {
-                Notification.show("Big center image clicked!");
-            }
-        });
+        bigCenterImage.addClickListener(event -> Notification.show("Big center image clicked!"));
         layout.addComponent(bigCenterImage);
 
         // Tile with image, where images will be scaled to match with tile size.
@@ -77,15 +72,10 @@ public class DemoUI extends UI {
         tile.setWidth(100, Unit.PIXELS);
         tile.setHeight(100, Unit.PIXELS);
         layout.addComponent(tile);
-        tile.addLayoutClickListener(new LayoutClickListener() {
-
-            @Override
-            public void layoutClick(LayoutClickEvent event) {
-                int size = (int) Math.round(100.0 + Math.random() * 100.0);
-                tile.setWidth(size, Unit.PIXELS);
-                tile.setHeight(size, Unit.PIXELS);
-            }
-
+        tile.addLayoutClickListener(event -> {
+            int size = (int) Math.round(100.0 + Math.random() * 100.0);
+            tile.setWidth(size, Unit.PIXELS);
+            tile.setHeight(size, Unit.PIXELS);
         });
 
         ScaleImage tileImage = new ScaleImage();
@@ -102,44 +92,38 @@ public class DemoUI extends UI {
 
         extendedImage = new ExtendedScaleImage();
         extendedImage.setSource(new ThemeResource("images/tile-indicator.png"));
-        extendedImage.setWidth("200px");
-        extendedImage.setHeight("400px");
+        extendedImage.setWidth(200, Unit.PIXELS);
+        extendedImage.setHeight(400, Unit.PIXELS);
         extendedImage.setStyleName("extended-image");
         layout.addComponent(extendedImage);
 
-        Button moveButton = new Button("Move background",
-                new Button.ClickListener() {
+        Button moveButton = new Button("Move background", event -> {
+            Boolean val = extendedImage.getPosition();
+            if (val == null) {
+                val = true;
+            }
 
-                    @Override
-                    public void buttonClick(ClickEvent event) {
-                        Boolean val = extendedImage.getPosition();
-                        if (val == null) {
-                            val = true;
-                        }
-
-                        extendedImage.setPosition(!val.booleanValue());
-
-                    }
-                });
+            extendedImage.setPosition(!val.booleanValue());
+        });
         layout.addComponent(moveButton);
 
         // Test how well scale image behaves inside alignment layout
 
         HorizontalLayout alignLayout = new HorizontalLayout();
         alignLayout.setSpacing(true);
-        alignLayout.setWidth("200px");
+        alignLayout.setWidth(200, Unit.PIXELS);
         layout.addComponent(alignLayout);
 
         Label label = new Label("Alignment test:");
         label.addStyleName("align-label");
         alignLayout.addComponent(label);
-        alignLayout.setExpandRatio(label, 1.0f);
+        alignLayout.setExpandRatio(label, 1f);
         alignLayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
 
         ScaleImage alignImage = new ScaleImage();
         alignImage.setSource(new ThemeResource("images/tile-image.jpg"));
-        alignImage.setWidth("20px");
-        alignImage.setHeight("20px");
+        alignImage.setWidth(20, Unit.PIXELS);
+        alignImage.setHeight(20, Unit.PIXELS);
         alignLayout.addComponent(alignImage);
         alignLayout.setComponentAlignment(alignImage, Alignment.BOTTOM_CENTER);
     }

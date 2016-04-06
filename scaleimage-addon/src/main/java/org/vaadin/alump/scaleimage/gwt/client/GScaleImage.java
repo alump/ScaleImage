@@ -10,7 +10,6 @@ public class GScaleImage extends Widget {
     }
 
     public void setUrl(String url) {
-
         if (url != null && !url.isEmpty()) {
             String value = "url('" + url + "')";
             // Logger.getLogger(getClass().getName()).log(Level.FINE,

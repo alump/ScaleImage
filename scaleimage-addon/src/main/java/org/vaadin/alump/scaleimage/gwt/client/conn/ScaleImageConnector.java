@@ -18,6 +18,7 @@
 package org.vaadin.alump.scaleimage.gwt.client.conn;
 
 import org.vaadin.alump.scaleimage.gwt.client.GScaleImage;
+import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageServerRpc;
 import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageState;
 
 import com.google.gwt.dom.client.NativeEvent;
@@ -28,7 +29,6 @@ import com.vaadin.client.ui.ClickEventHandler;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.shared.ui.AbstractEmbeddedState;
 import com.vaadin.shared.ui.Connect;
-import com.vaadin.shared.ui.image.ImageServerRpc;
 
 /**
  * Connector for ScaleImage
