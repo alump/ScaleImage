@@ -14,6 +14,9 @@ ScaleImage is also clickable.
  
 ## Release notes
 
+### Version 0.4.0 (TBD)
+- Vaadin 8 support
+
 ### Version 0.3.0 (2016-04-06)
 - OSGi bundled
 - Moved to use SCSS theming (make sure you have addons.scss generated and included to your theme)
