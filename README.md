@@ -14,7 +14,7 @@ ScaleImage is also clickable.
  
 ## Release notes
 
-### Version 0.4.0 (TBD)
+### Version 0.4.0 (2017-03-13)
 - Vaadin 8 support
 
 ### Version 0.3.0 (2016-04-06)
