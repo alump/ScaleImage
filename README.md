@@ -14,7 +14,7 @@ ScaleImage is also clickable.
  
 ## Release notes
 
-### Version 0.4.1 (TBD)
+### Version 0.4.1 (2017-03-20)
 - API now allows to define all CSS values of background. Offering alternative to CSS styling all these parameters in theme.
 
 ### Version 0.4.0 (2017-03-13)
