@@ -5,7 +5,7 @@
 	<artifactId>scaleimage-addon</artifactId>
 	<packaging>bundle</packaging>
 	<name>ScaleImage addon</name>
-	<version>0.4.0</version>
+	<version>0.4.1</version>
 
 	<description>ScaleImage Vaadin 8 addon</description>
 
@@ -143,6 +143,7 @@
 					<instructions>
 						<Export-Package>
 							org.vaadin.alump.scaleimage,
+							org.vaadin.alump.scaleimage.css,
 							org.vaadin.alump.scaleimage.gwt.client.share
 						</Export-Package>
 						<Import-Package>com.vaadin.data;version="[8.0,9)",

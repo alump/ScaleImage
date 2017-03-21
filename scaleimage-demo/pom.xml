@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<name>ScaleImage demo</name>
 	<description>ScaleImage Demo Application</description>
-	<version>0.4.0</version>
+	<version>0.4.1</version>
 
 	<properties>
 		<Implementation-Version>${project.version}</Implementation-Version>
@@ -102,35 +102,27 @@
 				<groupId>com.vaadin</groupId>
 				<artifactId>vaadin-maven-plugin</artifactId>
 				<version>${vaadin.plugin.version}</version>
-
 				<configuration>
-					<webappDirectory>src/main/webapp/VAADIN/widgetsets</webappDirectory>
-					<hostedWebapp>src/main/webapp/VAADIN/widgetsets</hostedWebapp>
-
-					<modules>
-						<module>org.vaadin.alump.scaleimage.demo.ScaleImageDemoWidgetset</module>
-					</modules>
-
-					<force>true</force>
 					<extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
+					<webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets</webappDirectory>
+					<hostedWebapp>${basedir}/src/main/webapp/VAADIN/widgetsets</hostedWebapp>
 					<noServer>true</noServer>
-					<runTarget>http://localhost:8080/</runTarget>
-					<port>8080</port>
-					<draftCompile>true</draftCompile>
-					<!-- <style>OBF</style> -->
-					<style>PRETTY</style>
-					<force>true</force>
+					<persistentunitcachedir>${basedir}/target/tmp/gwt-unitCache</persistentunitcachedir>
+					<compileReport>true</compileReport>
 					<strict>true</strict>
-					<compileReport>false</compileReport>
+					<runTarget>http://localhost:8080/</runTarget>
 				</configuration>
-
 				<executions>
+					<!-- You are free to mark this as permanently ignored in Eclipse -->
 					<execution>
+						<configuration>
+							<!-- if you don't specify any modules, the plugin will find them -->
+						</configuration>
 						<goals>
 							<goal>resources</goal>
 							<goal>update-widgetset</goal>
-							<goal>compile-theme</goal>
 							<goal>update-theme</goal>
+							<goal>compile-theme</goal>
 							<goal>compile</goal>
 						</goals>
 					</execution>
@@ -141,7 +133,6 @@
 				<version>3.0.0</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<warName>ScaleImageDemo</warName>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -169,18 +160,6 @@
 				<version>${jetty.plugin.version}</version>
 				<configuration>
 					<scanIntervalSeconds>2</scanIntervalSeconds>
-				</configuration>
-			</plugin>
-
-			<!-- This is used to autodeploy demo to Tomcat in CI -->
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat8-maven-plugin</artifactId>
-				<version>3.0-r1655215</version>
-				<configuration>
-					<url>http://localhost:8080/manager/text</url>
-					<server>mytomcat</server>
-					<path>/ScaleImageDemo</path>
 				</configuration>
 			</plugin>
 

@@ -20,4 +20,12 @@ public class GScaleImage extends Widget {
         }
     }
 
+    public void setInnerHtml(String html) {
+        getElement().setInnerHTML(html);
+    }
+
+    public void setInnerText(String text) {
+        getElement().setInnerText(text);
+    }
+
 }

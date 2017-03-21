@@ -19,6 +19,9 @@ package org.vaadin.alump.scaleimage;
 
 import com.vaadin.event.MouseEvents;
 import com.vaadin.shared.EventId;
+import com.vaadin.shared.Registration;
+import com.vaadin.shared.ui.ContentMode;
+import org.vaadin.alump.scaleimage.css.*;
 import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageServerRpc;
 import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageState;
 
@@ -26,6 +29,8 @@ import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.server.Resource;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.ui.AbstractEmbedded;
+
+import java.util.Objects;
 
 /**
  * ScaleImage provides Image like features, but used DIV element and CSS
@@ -145,11 +150,117 @@ public class ScaleImage extends AbstractEmbedded {
     }
 
     /**
+     * Method allows to define how image is sized to containing element.
+     * @param size Background size
+     */
+    public void setBackgroundSize(BackgroundSize size) {
+        if(size == null) {
+            clearStyleProperty("backgroundSize");
+        } else {
+            setStyleProperty("backgroundSize", size.getCssValue());
+        }
+    }
+
+    /**
+     * Method allows to define background size as horizontal and vertical CSS values
+     * @param horizontal Horizontal value (eg. "50%" or "50px")
+     * @param vertical Vertical value (eg. "50%" or "50px")
+     */
+    public void setBackgroundSize(String horizontal, String vertical) {
+        setStyleProperty("backgroundSize",
+                Objects.requireNonNull(horizontal) + " " + Objects.requireNonNull(vertical));
+    }
+
+    /**
+     * Method allows to define how image is repeated in containing element.
+     * @param repeat Background repeat
+     */
+    public void setBackgroundRepeat(BackgroundRepeat repeat) {
+        if(repeat == null) {
+             clearStyleProperty("backgroundRepeat");
+        } else {
+            setStyleProperty("backgroundRepeat", repeat.getCssValue());
+        }
+    }
+
+    /**
+     * Method allows to define how image is clipped in containing element.
+     * @param clip Background clip
+     */
+    public void setBackgroundClip(BackgroundClip clip) {
+        if(clip == null) {
+            clearStyleProperty("backgroundClip");
+        } else {
+            setStyleProperty("backgroundClip", clip.getCssValue());
+        }
+    }
+
+    /**
+     * Method allows to define origin of image inside containing element.
+     * @param origin Background origin
+     */
+    public void setBackgroundOrigin(BackgroundOrigin origin) {
+        if(origin == null) {
+            clearStyleProperty("backgroundOrigin");
+        } else {
+            setStyleProperty("backgroundOrigin", origin.getCssValue());
+        }
+    }
+
+    /**
+     * Method allows to define image positioning in containing element.
+     * @param horizontal Horizontal positioning
+     * @param vertical Vertical positioning
+     */
+    public void setBackgroundPosition(HorizontalPosition horizontal, VerticalPosition vertical) {
+        setStyleProperty("backgroundPosition",
+                Objects.requireNonNull(horizontal).getCssValue() + " "
+                        + Objects.requireNonNull(vertical).getCssValue());
+    }
+
+    /**
+     * Method allows to define background position as horizontal and vertical CSS values
+     * @param horizontal Horizontal value (eg. "50%" or "50px")
+     * @param vertical Vertical value (eg. "50%" or "50px")
+     */
+    public void setBackgroundPosition(String horizontal, String vertical) {
+        setStyleProperty("backgroundPosition",
+                Objects.requireNonNull(horizontal) + " " + Objects.requireNonNull(vertical));
+    }
+
+    /**
+     * Method allows to define to what coordinates background image is attached.
+     * @param attachment Attachment
+     */
+    public void setBackgroundAttachment(BackgroundAttachment attachment) {
+        if(attachment == null) {
+            clearStyleProperty("backgroundAttachment");
+        } else {
+            setStyleProperty("backgroundAttachment", attachment.getCssValue());
+        }
+    }
+
+    /**
+     * This method allows you to inject text or HTML content inside image. Can be used to eg. present text inside
+     * image.
+     * @param content Content injected inside image
+     * @param contentMode Content type
+     */
+    public void setInnerContent(String content, ContentMode contentMode) {
+        getState().innerContent = content;
+        getState().contentMode = Objects.requireNonNull(contentMode);
+    }
+
+    public void clearInnerContent() {
+        setInnerContent(null, ContentMode.TEXT);
+    }
+
+    /**
      * Add click listener
      * @param listener Listener added
      */
-    public void addClickListener(MouseEvents.ClickListener listener) {
-        addListener(EventId.CLICK_EVENT_IDENTIFIER, ClickEvent.class, listener,
+    public Registration addClickListener(MouseEvents.ClickListener listener) {
+        return addListener(EventId.CLICK_EVENT_IDENTIFIER, ClickEvent.class, listener,
                 MouseEvents.ClickListener.clickMethod);
     }
 

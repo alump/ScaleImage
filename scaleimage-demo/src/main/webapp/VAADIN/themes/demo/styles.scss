@@ -52,4 +52,16 @@
   .align-label {
     text-align: right;
   }
+
+  .adjust-image {
+    border: 1px dashed black;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(0,0,0,0.5);
+    text-align: center;
+    overflow: auto;
+
+    &.with-padding {
+      padding: 10px 20px 20px 10px;
+    }
+  }
 }
