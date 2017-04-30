@@ -1,7 +1,7 @@
 ScaleImage Vaadin UI Component Add On
 =====================================
 
-[![Build Status](http://siika.fi:8888/jenkins/job/ScaleImage%20(Vaadin)/badge/icon)](http://siika.fi:8888/jenkins/job/ScaleImage%20(Vaadin)/)
+[![Build Status](https://epic.siika.fi/jenkins/job/ScaleImage%20(Vaadin)/badge/icon)](https://epic.siika.fi/jenkins/job/ScaleImage%20(Vaadin)/)
 
 Replace IMG based tags with DIV with CSS background rules. All this is get more control with CSS rules. E.g. you can
 position and scale image better related to size of component and element. This also allows you to have image repeating.
