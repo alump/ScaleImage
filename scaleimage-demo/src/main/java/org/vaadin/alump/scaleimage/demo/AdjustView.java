@@ -193,6 +193,17 @@ public class AdjustView extends VerticalLayout implements View {
         Button backToMenu = new Button("Back to menu", e -> navigator.navigateTo(MenuView.VIEW_NAME));
         topbar.addComponent(backToMenu);
 
+        CheckBox withBorder = new CheckBox("Add dashed border");
+        withBorder.setDescription("If image should have dashed border around it");
+        topbar.addComponent(withBorder);
+        withBorder.addValueChangeListener(e -> {
+            if(e.getValue()) {
+                image.addStyleName("with-border");
+            } else {
+                image.removeStyleName("with-border");
+            }
+        });
+
         CheckBox withPadding = new CheckBox("Add padding");
         withPadding.setDescription("Set image to have padding. Can use used to test different boxes.");
         topbar.addComponent(withPadding);
@@ -291,10 +302,23 @@ public class AdjustView extends VerticalLayout implements View {
         originComboBox.setEmptySelectionAllowed(false);
         originComboBox.setValue(BackgroundOrigin.PADDING_BOX);
 
+        ComboBox<BackgroundColor> colorComboBox = new ComboBox<>();
+        new BackgroundColor("transparent");
+        colorComboBox.setItems(
+                BackgroundColor.TRANSPARENT,
+                new BackgroundColor("silver"),
+                new BackgroundColor("red"),
+                new BackgroundColor("#000"),
+                new BackgroundColor("rgba(255,255,0,0.5)")
+        );
+        colorComboBox.setCaption("Color");
+        bar2.addComponents(colorComboBox);
+        colorComboBox.addValueChangeListener(e -> image.setBackgroundColor(e.getValue()));
+
         TextField innerContent = new TextField();
         innerContent.setCaption("Inner content");
         innerContent.addValueChangeListener(e -> image.setInnerContent(e.getValue(), ContentMode.TEXT));
-        bar2.addComponent(innerContent);
+        topbar.addComponent(innerContent);
 
         image.addStyleName("adjust-image");
         addComponent(image);

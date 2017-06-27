@@ -16,9 +16,10 @@ ScaleImage is also clickable.
 ### Contain image with different aspect ratio
 Scale image can used to make sure whole image is visible, and that it is aligned to center
 of available space. Dashed border is added to example image to show the position and size of
-background image on it.
+background image on it. And silver background is set to show the unallocated space inside
+component (as image has different aspect ratio).
 
-[Contain image](./docs/images/contain.png)
+![Contain image](https://raw.githubusercontent.com/alump/ScaleImage/master/doc/images/contain.png)
 ```java
 // These code examples are for 0.5.0+
 
@@ -32,7 +33,8 @@ image.setCssValues(
     BackgroundClip.PADDING_BOX,
     BackgroundOrigin.PADDING_BOX,
     BackgroundPositionX.CENTER,
-    BackgroundPositionY.CENTER
+    BackgroundPositionY.CENTER,
+    new BackgroundColor("silver")
 );
 
 // Option B: Alternative way of doing the same as above
@@ -40,7 +42,8 @@ image.setBackgroundSize(BackgroundSize.CONTAIN)
      .setBackgroundClip(BackgroundClip.PADDING_BOX)
      .setBackgroundOrigin(BackgroundOrigin.PADDING_BOX)
      .setBackgroundPositionX(BackgroundPositionX.CENTER)
-     .setBackgroundPositionY(BackgroundPositionY.CENTER);
+     .setBackgroundPositionY(BackgroundPositionY.CENTER)
+     .setBackgroundColor(new BackgroundColor("silver"));
 ```
 
 Option 3, use CSS styling in your theme. _This works also with older versions_.
@@ -57,6 +60,7 @@ And then in theme:
   background-clip: padding-box;
   background-origin: padding-box;
   background-position: center center;
+  background-color: silver;
 }
 ```
 
@@ -70,9 +74,10 @@ image.addClickListener(event -> Notification.show("Image clicked!"));
 ## Release notes
 
 ### Version 0.5.0 (2017-06-27)
-- API clean up
-- Alternative text set to aria-label on clien side
+- API has been cleaned up
+- Alternative text is now set as aria-label attribute on client side
 - Widgetset name to org.vaadin.alump.scaleimage.ScaleImageWidgetset
+- API to define background color
 
 ### Version 0.4.1 (2017-03-20)
 - API now allows to define all CSS values of background. Offering alternative to CSS styling all these parameters in theme.

@@ -54,7 +54,6 @@
   }
 
   .adjust-image {
-    border: 1px dashed black;
     color: white;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), -1px -1px 2px rgba(0,0,0,0.8);
     text-align: center;
@@ -62,6 +61,10 @@
 
     &.with-padding {
       padding: 20px;
+    }
+
+    &.with-border {
+      border: 1px dashed black;
     }
   }
 }

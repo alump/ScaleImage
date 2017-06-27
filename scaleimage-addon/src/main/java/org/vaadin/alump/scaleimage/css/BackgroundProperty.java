@@ -12,7 +12,8 @@ public enum BackgroundProperty {
     ORIGIN("backgroundOrigin"),
     ATTACHMENT("backgroundAttachment"),
     POSITION_X("backgroundPositionX"),
-    POSITION_Y("backgroundPositionY");
+    POSITION_Y("backgroundPositionY"),
+    COLOR("background-color");
 
     private final String name;
 

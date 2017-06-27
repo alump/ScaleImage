@@ -208,6 +208,16 @@ public class ScaleImage extends AbstractEmbedded {
     }
 
     /**
+     * Method allows to define the color behind the image.
+     * @param color Background color of image
+     * @return Reference to this Scale Image
+     */
+    public ScaleImage setBackgroundColor(BackgroundColor color) {
+        setOrClearCssValue(BackgroundProperty.COLOR, color);
+        return this;
+    }
+
+    /**
      * Method allows to define image positioning in containing element.
      * @param horizontal Horizontal positioning
      * @param vertical Vertical positioning
