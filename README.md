@@ -17,7 +17,8 @@ ScaleImage is also clickable.
 Scale image can used to make sure whole image is visible, and that it is aligned to center
 of available space. Dashed border is added to example image to show the position and size of
 background image on it. And silver background is set to show the unallocated space inside
-component (as image has different aspect ratio).
+component (as image has different aspect ratio). Picture below shows how two images with
+different aspect ratios behave with this setup.
 
 ![Contain image](https://raw.githubusercontent.com/alump/ScaleImage/master/doc/images/contain.png)
 ```java
@@ -72,6 +73,9 @@ image.addClickListener(event -> Notification.show("Image clicked!"));
 ```
  
 ## Release notes
+
+### Version 0.5.1 (TBD)
+- WIP
 
 ### Version 0.5.0 (2017-06-27)
 - API has been cleaned up

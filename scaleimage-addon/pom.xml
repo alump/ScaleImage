@@ -5,7 +5,7 @@
 	<artifactId>scaleimage-addon</artifactId>
 	<packaging>bundle</packaging>
 	<name>ScaleImage addon</name>
-	<version>0.5.0</version>
+	<version>0.5.1-SNAPSHOT</version>
 
 	<description>ScaleImage Vaadin 8 addon</description>
 
