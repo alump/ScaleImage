@@ -181,17 +181,20 @@ public class AdjustView extends VerticalLayout implements View {
         Resource image2 = new ThemeResource("images/redwood.jpg");
         Resource image3 = new ThemeResource("images/tile-indicator.png");
         image = new ScaleImage();
-
+        image.addClickListener(e -> Notification.show(
+                "Image clicked at " + e.getClientX() + " " + e.getClientY(),
+                Notification.Type.TRAY_NOTIFICATION));
 
         HorizontalLayout topbar = new HorizontalLayout();
         topbar.setWidth(100, Unit.PERCENTAGE);
         topbar.setSpacing(true);
         addComponent(topbar);
 
-        Button backtoMenu = new Button("Back to menu", e -> navigator.navigateTo(MenuView.VIEW_NAME));
-        topbar.addComponent(backtoMenu);
+        Button backToMenu = new Button("Back to menu", e -> navigator.navigateTo(MenuView.VIEW_NAME));
+        topbar.addComponent(backToMenu);
 
         CheckBox withPadding = new CheckBox("Add padding");
+        withPadding.setDescription("Set image to have padding. Can use used to test different boxes.");
         topbar.addComponent(withPadding);
         withPadding.addValueChangeListener(e -> {
             if(e.getValue()) {
@@ -199,6 +202,13 @@ public class AdjustView extends VerticalLayout implements View {
             } else {
                 image.removeStyleName("with-padding");
             }
+        });
+
+        CheckBox disabled = new CheckBox("Disabled");
+        disabled.setDescription("Disabling image will disable click handling");
+        topbar.addComponents(disabled);
+        disabled.addValueChangeListener(e -> {
+            image.setEnabled(!e.getValue());
         });
 
         HorizontalLayout bar1 = new HorizontalLayout();

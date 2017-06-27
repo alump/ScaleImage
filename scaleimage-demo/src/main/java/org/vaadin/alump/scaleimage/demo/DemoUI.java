@@ -29,7 +29,7 @@ import com.vaadin.server.VaadinRequest;
 import javax.servlet.annotation.WebServlet;
 
 @SuppressWarnings("serial")
-@Title("Demo of ScaleImage")
+@Title("ScaleImage Demo")
 @Theme("demo")
 public class DemoUI extends UI {
 
