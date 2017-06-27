@@ -47,7 +47,7 @@ image.setBackgroundSize(BackgroundSize.CONTAIN)
      .setBackgroundColor(new BackgroundColor("silver"));
 ```
 
-Option 3, use CSS styling in your theme. _This works also with older versions_.
+Option C, use CSS styling in your theme. _This works also with older versions_.
 
 In code:
 ```java
