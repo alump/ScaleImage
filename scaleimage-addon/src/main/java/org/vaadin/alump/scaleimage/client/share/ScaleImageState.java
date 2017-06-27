@@ -1,4 +1,4 @@
-package org.vaadin.alump.scaleimage.gwt.client.share;
+package org.vaadin.alump.scaleimage.client.share;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +14,7 @@ public class ScaleImageState extends AbstractEmbeddedState {
     {
         primaryStyleName = "scale-image";
     }
+
     public Map<String, String> styleValues = new HashMap<String, String>();
 
     public String innerContent = null;

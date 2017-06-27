@@ -22,8 +22,8 @@ import com.vaadin.shared.EventId;
 import com.vaadin.shared.Registration;
 import com.vaadin.shared.ui.ContentMode;
 import org.vaadin.alump.scaleimage.css.*;
-import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageServerRpc;
-import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageState;
+import org.vaadin.alump.scaleimage.client.share.ScaleImageServerRpc;
+import org.vaadin.alump.scaleimage.client.share.ScaleImageState;
 
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.server.Resource;

@@ -1,4 +1,4 @@
-package org.vaadin.alump.scaleimage.gwt.client.share;
+package org.vaadin.alump.scaleimage.client.share;
 
 import com.vaadin.shared.communication.ServerRpc;
 import com.vaadin.shared.ui.ClickRpc;

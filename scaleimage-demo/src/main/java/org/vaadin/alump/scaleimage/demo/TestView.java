@@ -28,6 +28,7 @@ public class TestView extends VerticalLayout implements View {
         bigCenterImage.setStyleName("big-center-image");
         bigCenterImage.setSource(new ThemeResource("images/big-center-image.jpg"));
         bigCenterImage.addClickListener(event -> Notification.show("Big center image clicked!"));
+        bigCenterImage.setAlternateText("Test Image");
         addComponent(bigCenterImage);
 
         // Tile with image, where images will be scaled to match with tile size.

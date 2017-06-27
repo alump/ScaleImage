@@ -15,14 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vaadin.alump.scaleimage.gwt.client.conn;
+package org.vaadin.alump.scaleimage.client.conn;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.PreElement;
 import com.vaadin.shared.ui.ContentMode;
-import org.vaadin.alump.scaleimage.gwt.client.GScaleImage;
-import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageServerRpc;
-import org.vaadin.alump.scaleimage.gwt.client.share.ScaleImageState;
+import org.vaadin.alump.scaleimage.client.GScaleImage;
+import org.vaadin.alump.scaleimage.client.share.ScaleImageServerRpc;
+import org.vaadin.alump.scaleimage.client.share.ScaleImageState;
 
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.dom.client.Style;
@@ -79,6 +79,8 @@ public class ScaleImageConnector extends AbstractComponentConnector {
 		} else {
         	getWidget().setInnerText(getState().innerContent);
 		}
+
+		getWidget().setAriaLabel(getState().alternateText);
 	}
 	
     protected final ClickEventHandler clickEventHandler = new ClickEventHandler(

@@ -44,6 +44,8 @@ image.addClickListener(event -> Notification.show("Image clicked!"));
 
 ### Version 0.5.0 (TBD)
 - API clean up
+- Alternative text set to aria-label on clien side
+- Widgetset name to org.vaadin.alump.scaleimage.ScaleImageWidgetset
 
 ### Version 0.4.1 (2017-03-20)
 - API now allows to define all CSS values of background. Offering alternative to CSS styling all these parameters in theme.

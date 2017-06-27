@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vaadin.alump.scaleimage.gwt.client;
+package org.vaadin.alump.scaleimage.client;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.Widget;
@@ -45,4 +45,11 @@ public class GScaleImage extends Widget {
         getElement().setInnerText(text);
     }
 
+    public void setAriaLabel(String label) {
+        if(label == null) {
+            getElement().removeAttribute("aria-label");
+        } else {
+            getElement().setAttribute("aria-label", label);
+        }
+    }
 }

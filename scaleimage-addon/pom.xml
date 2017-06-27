@@ -5,7 +5,7 @@
 	<artifactId>scaleimage-addon</artifactId>
 	<packaging>bundle</packaging>
 	<name>ScaleImage addon</name>
-	<version>0.4.2-SNAPSHOT</version>
+	<version>0.5.0-SNAPSHOT</version>
 
 	<description>ScaleImage Vaadin 8 addon</description>
 
@@ -41,7 +41,7 @@
 		<Implementation-Title>ScaleImage</Implementation-Title>
 		<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
 		<Vaadin-Addon>ScaleImage-${project.version}.jar</Vaadin-Addon>
-		<Vaadin-Widgetsets>org.vaadin.alump.scaleimage.gwt.ScaleImageWidgetset</Vaadin-Widgetsets>
+		<Vaadin-Widgetsets>org.vaadin.alump.scaleimage.ScaleImageWidgetset</Vaadin-Widgetsets>
 		<Vaadin-Stylesheets>VAADIN/addons/scaleimage/scaleimage.scss</Vaadin-Stylesheets>
 
 	</properties>
@@ -240,38 +240,6 @@
 		<finalName>ScaleImage-${project.version}</finalName>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>com.vaadin</groupId>
-										<artifactId>
-											vaadin-maven-plugin
-										</artifactId>
-										<versionRange>
-											[7.0-SNAPSHOT,)
-										</versionRange>
-										<goals>
-											<goal>resources</goal>
-											<goal>update-widgetset</goal>
-											<goal>compile</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
@@ -289,15 +257,15 @@
 						</archive>
 						<sourceEncoding>UTF-8</sourceEncoding>
 						<links>
-							<link>http://java.sun.com/j2se/1.6.0/docs/api/</link>
+							<link>http://java.sun.com/j2se/1.8.0/docs/api/</link>
 							<link>https://vaadin.com/api/</link>
 						</links>
 						<doctitle>ScaleImage Vaadin Addon</doctitle>
 						<sourcepath>src/main/java</sourcepath>
 						<show>public</show>
-						<source>1.6</source>
+						<source>1.8</source>
 						<nohelp>true</nohelp>
-						<excludePackageNames>*.gwt.*</excludePackageNames>
+						<excludePackageNames>*.client.*</excludePackageNames>
 					</configuration>
 					<executions>
 						<execution>
