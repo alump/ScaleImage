@@ -3,7 +3,7 @@ package org.vaadin.alump.scaleimage.css;
 /**
  * Different background-origin values
  */
-public enum BackgroundOrigin {
+public enum BackgroundOrigin implements BackgroundCssValue {
     BORDER_BOX("border-box"), PADDING_BOX("padding-box"), CONTENT_BOX("content-box"), INITIAL("initial"),
     INHERIT("inherit");
 
@@ -13,7 +13,13 @@ public enum BackgroundOrigin {
         this.value = value;
     }
 
+    @Override
     public String getCssValue() {
         return value;
+    }
+
+    @Override
+    public BackgroundProperty getStyleProperty() {
+        return BackgroundProperty.ORIGIN;
     }
 }

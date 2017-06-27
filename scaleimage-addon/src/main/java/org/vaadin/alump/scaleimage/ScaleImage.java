@@ -1,7 +1,7 @@
 /**
  * ScaleImage.java (ScaleImage)
  * 
- * Copyright 2013 Vaadin Ltd, Sami Viitanen <alump@vaadin.org>
+ * Copyright 2013-2017 Vaadin Ltd, Sami Viitanen <sami.viitanen@vaadin.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import com.vaadin.server.Resource;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.ui.AbstractEmbedded;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -121,6 +122,11 @@ public class ScaleImage extends AbstractEmbedded {
         return (ScaleImageState) super.getState();
     }
 
+    @Override
+    protected ScaleImageState getState(boolean markDirty) {
+        return (ScaleImageState) super.getState(markDirty);
+    }
+
     /**
      * Define style value for element at client side. Use to modify background
      * styling properties on server side. Remember to write "background-size" as
@@ -152,92 +158,128 @@ public class ScaleImage extends AbstractEmbedded {
     /**
      * Method allows to define how image is sized to containing element.
      * @param size Background size
+     * @return Reference to this Scale Image
      */
-    public void setBackgroundSize(BackgroundSize size) {
-        if(size == null) {
-            clearStyleProperty("backgroundSize");
-        } else {
-            setStyleProperty("backgroundSize", size.getCssValue());
-        }
+    public ScaleImage setBackgroundSize(BackgroundSize size) {
+        setOrClearCssValue(BackgroundProperty.SIZE, size);
+        return this;
     }
 
     /**
      * Method allows to define background size as horizontal and vertical CSS values
      * @param horizontal Horizontal value (eg. "50%" or "50px")
      * @param vertical Vertical value (eg. "50%" or "50px")
+     * @return Reference to this Scale Image
      */
-    public void setBackgroundSize(String horizontal, String vertical) {
-        setStyleProperty("backgroundSize",
+    public ScaleImage setBackgroundSize(String horizontal, String vertical) {
+        setStyleProperty(BackgroundProperty.SIZE.getPropertyName(),
                 Objects.requireNonNull(horizontal) + " " + Objects.requireNonNull(vertical));
+        return this;
     }
 
     /**
      * Method allows to define how image is repeated in containing element.
      * @param repeat Background repeat
+     * @return Reference to this Scale Image
      */
-    public void setBackgroundRepeat(BackgroundRepeat repeat) {
-        if(repeat == null) {
-             clearStyleProperty("backgroundRepeat");
-        } else {
-            setStyleProperty("backgroundRepeat", repeat.getCssValue());
-        }
+    public ScaleImage setBackgroundRepeat(BackgroundRepeat repeat) {
+        setOrClearCssValue(BackgroundProperty.REPEAT, repeat);
+        return this;
     }
 
     /**
      * Method allows to define how image is clipped in containing element.
      * @param clip Background clip
+     * @return Reference to this Scale Image
      */
-    public void setBackgroundClip(BackgroundClip clip) {
-        if(clip == null) {
-            clearStyleProperty("backgroundClip");
-        } else {
-            setStyleProperty("backgroundClip", clip.getCssValue());
-        }
+    public ScaleImage setBackgroundClip(BackgroundClip clip) {
+        setOrClearCssValue(BackgroundProperty.CLIP, clip);
+        return this;
     }
 
     /**
      * Method allows to define origin of image inside containing element.
      * @param origin Background origin
+     * @return Reference to this Scale Image
      */
-    public void setBackgroundOrigin(BackgroundOrigin origin) {
-        if(origin == null) {
-            clearStyleProperty("backgroundOrigin");
-        } else {
-            setStyleProperty("backgroundOrigin", origin.getCssValue());
-        }
+    public ScaleImage setBackgroundOrigin(BackgroundOrigin origin) {
+        setOrClearCssValue(BackgroundProperty.ORIGIN, origin);
+        return this;
     }
 
     /**
      * Method allows to define image positioning in containing element.
      * @param horizontal Horizontal positioning
      * @param vertical Vertical positioning
+     * @return Reference to this Scale Image
      */
-    public void setBackgroundPosition(HorizontalPosition horizontal, VerticalPosition vertical) {
-        setStyleProperty("backgroundPosition",
-                Objects.requireNonNull(horizontal).getCssValue() + " "
-                        + Objects.requireNonNull(vertical).getCssValue());
+    public ScaleImage setBackgroundPosition(BackgroundPositionX horizontal, BackgroundPositionY vertical) {
+        setBackgroundPositionX(horizontal);
+        setBackgroundPositionY(vertical);
+        return this;
+    }
+
+    /**
+     * Method allows to define background position on X axis (horizontal)
+     * @param position New position or null if undefined
+     * @return Reference to this Scale Image
+     */
+    public ScaleImage setBackgroundPositionX(BackgroundPositionX position) {
+        setOrClearCssValue(BackgroundProperty.POSITION_X, position);
+        return this;
+    }
+
+    /**
+     * Method allows to define background position on Y axis (horizontal)
+     * @param position New position or null if undefined
+     * @return Reference to this Scale Image
+     */
+    public ScaleImage setBackgroundPositionY(BackgroundPositionY position) {
+        setOrClearCssValue(BackgroundProperty.POSITION_Y, position);
+        return this;
     }
 
     /**
      * Method allows to define background position as horizontal and vertical CSS values
      * @param horizontal Horizontal value (eg. "50%" or "50px")
      * @param vertical Vertical value (eg. "50%" or "50px")
+     * @return Reference to this Scale Image
      */
-    public void setBackgroundPosition(String horizontal, String vertical) {
-        setStyleProperty("backgroundPosition",
-                Objects.requireNonNull(horizontal) + " " + Objects.requireNonNull(vertical));
+    public ScaleImage setBackgroundPosition(String horizontal, String vertical) {
+        setCssValue(BackgroundProperty.POSITION_X, horizontal);
+        setCssValue(BackgroundProperty.POSITION_Y, vertical);
+        return this;
+
     }
 
     /**
      * Method allows to define to what coordinates background image is attached.
      * @param attachment Attachment
+     * @return Reference to this Scale Image
      */
-    public void setBackgroundAttachment(BackgroundAttachment attachment) {
-        if(attachment == null) {
-            clearStyleProperty("backgroundAttachment");
-        } else {
-            setStyleProperty("backgroundAttachment", attachment.getCssValue());
-        }
+    public ScaleImage setBackgroundAttachment(BackgroundAttachment attachment) {
+        setOrClearCssValue(BackgroundProperty.ATTACHMENT, attachment);
+        return this;
+    }
+
+    /**
+     * Set inner content
+     * @param content Inner content
+     * @return Reference to this Scale Image
+     */
+    public ScaleImage setInnerContent(String content) {
+        getState().innerContent = content;
+        return this;
+    }
+
+    /**
+     * Set inner content mode
+     * @param mode Inner content mode
+     * @return Reference to this Scale Image
+     */
+    public ScaleImage setInnerContentMode(ContentMode mode) {
+        getState().innerContentMode = Objects.requireNonNull(mode);
+        return this;
     }
 
     /**
@@ -245,12 +287,33 @@ public class ScaleImage extends AbstractEmbedded {
      * image.
      * @param content Content injected inside image
      * @param contentMode Content type
+     * @return Reference to this Scale Image
      */
-    public void setInnerContent(String content, ContentMode contentMode) {
-        getState().innerContent = content;
-        getState().contentMode = Objects.requireNonNull(contentMode);
+    public ScaleImage setInnerContent(String content, ContentMode contentMode) {
+        setInnerContent(content);
+        setInnerContentMode(contentMode);
+        return this;
     }
 
+    /**
+     * Get inner content
+     * @return Inner content
+     */
+    public String getInnerContent() {
+        return getState(false).innerContent;
+    }
+
+    /**
+     * Get inner content mode
+     * @return Inner content mode
+     */
+    public ContentMode getInnerContentMode() {
+        return getState(false).innerContentMode;
+    }
+
+    /**
+     * Clear inner content set by setInnerContent
+     */
     public void clearInnerContent() {
         setInnerContent(null, ContentMode.TEXT);
     }
@@ -271,6 +334,62 @@ public class ScaleImage extends AbstractEmbedded {
     public void removeClickListener(MouseEvents.ClickListener listener) {
         removeListener(EventId.CLICK_EVENT_IDENTIFIER, ClickEvent.class,
                 listener);
+    }
+
+    /**
+     * Set CSS value of property
+     * @param property Property set
+     * @param value CSS value as string
+     * @return Reference to this Scale Image
+     */
+    public ScaleImage setCssValue(BackgroundProperty property, String value) {
+        setStyleProperty(property.getPropertyName(), value);
+        return this;
+    }
+
+    /**
+     * Set CSS value
+     * @param value New value, not null
+     * @return Reference to this Scale Image
+     */
+    public ScaleImage setCssValue(BackgroundCssValue value) {
+        setStyleProperty(
+                Objects.requireNonNull(value).getStyleProperty().getPropertyName(),
+                value.getCssValue());
+        return this;
+    }
+
+    /**
+     * Set multiple CSS values
+     * @param values New values, no nulls
+     * @return Reference to this to allow nice one liners
+     */
+    public ScaleImage setCssValues(BackgroundCssValue ... values) {
+        Arrays.stream(values).forEach(this::setCssValue);
+        return this;
+    }
+
+    /**
+     * Clear CSS value of given property. When value is cleared the (default) values from application theme apply.
+     * @param property Property cleared
+     */
+    public void clearCssValue(BackgroundProperty property) {
+        clearStyleProperty(property.getPropertyName());
+    }
+
+    /**
+     * Set or clear CSS value
+     * @param property Property modifed
+     * @param value New value (if null then value is cleared)
+     */
+    protected void setOrClearCssValue(BackgroundProperty property, BackgroundCssValue value) {
+        if (value != null && property != value.getStyleProperty()) {
+            throw new IllegalArgumentException("Property and value does not match");
+        } else if (value == null) {
+            clearCssValue(property);
+        } else {
+            setCssValue(value);
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package org.vaadin.alump.scaleimage.demo;
 
 import org.vaadin.alump.scaleimage.ScaleImage;
+import org.vaadin.alump.scaleimage.css.*;
 
 /**
  * Example extending of scale image that changes CSS values from server side.
@@ -13,14 +14,15 @@ public class ExtendedScaleImage extends ScaleImage {
 
     public ExtendedScaleImage() {
         // For this demo do not cover scale image with background
-        setStyleProperty("backgroundSize", "auto");
+        setCssValue(BackgroundSize.AUTO);
     }
 
     public void setPosition(boolean center) {
         this.center = center;
-        // Jump between top left and center
-        setStyleProperty("backgroundPosition", center ? "center center"
-                : "top left");
+        setCssValues(
+                center ? BackgroundPositionX.CENTER : BackgroundPositionX.LEFT,
+                center ? BackgroundPositionY.CENTER : BackgroundPositionY.TOP
+        );
     }
 
     public Boolean getPosition() {

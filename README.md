@@ -12,7 +12,38 @@ ScaleImage is also clickable.
  * [Vaadin Directory](http://vaadin.com/directory#addon/scaleimage)
  * [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
  
+## Usage
+```java
+// These code examples are for 0.5.0+
+
+ScaleImage image = new ScaleImage(new ThemeResource("images/myimage.jpg"));
+image.setWidth(300, Unit.PIXELS);
+image.setHeight(200, Unit.PIXELS);
+
+// Applying CSS rules related to image position and size inside element
+image.setCssValues(
+    BackgroundSize.CONTAIN,
+    BackgroundClip.CONTENT_BOX,
+    BackgroundOrigin.CONTENT_BOX,
+    BackgroundPositionX.LEFT,
+    BackgroundPositionY.TOP
+);
+
+// Alternative way of doing the same as above
+image.setBackgroundSize(BackgroundSize.CONTAIN)
+     .setBackgroundClip(BackgroundClip.CONTENT_BOX)
+     .setBackgroundOrigin(BackgroundOrigin.CONTENT_BOX)
+     .setBackgroundPositionX(BackgroundPositionX.LEFT)
+     .setBackgroundPositionY(BackgroundPositionY.TOP);
+
+// Attaching click listener
+image.addClickListener(event -> Notification.show("Image clicked!"));
+```
+ 
 ## Release notes
+
+### Version 0.5.0 (TBD)
+- API clean up
 
 ### Version 0.4.1 (2017-03-20)
 - API now allows to define all CSS values of background. Offering alternative to CSS styling all these parameters in theme.

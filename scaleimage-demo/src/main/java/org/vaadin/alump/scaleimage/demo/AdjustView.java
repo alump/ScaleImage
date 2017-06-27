@@ -27,26 +27,26 @@ public class AdjustView extends VerticalLayout implements View {
     private ScaleImage image;
 
     private static class PositionPair {
-        private final HorizontalPosition horizontal;
-        private final VerticalPosition vertical;
+        private final BackgroundPositionX horizontal;
+        private final BackgroundPositionY vertical;
 
-        private PositionPair(HorizontalPosition horizontal, VerticalPosition vertical) {
+        private PositionPair(BackgroundPositionX horizontal, BackgroundPositionY vertical) {
             this.horizontal = horizontal;
             this.vertical = vertical;
         }
 
-        public HorizontalPosition getHorizontal() {
+        public BackgroundPositionX getHorizontal() {
             return horizontal;
         }
 
-        public VerticalPosition getVertical() {
+        public BackgroundPositionY getVertical() {
             return vertical;
         }
 
         public static Collection<PositionPair> generateAll() {
             List<PositionPair> list = new ArrayList<>();
-            for (HorizontalPosition horizontal : HorizontalPosition.values()) {
-                for (VerticalPosition vertical : VerticalPosition.values()) {
+            for (BackgroundPositionX horizontal : BackgroundPositionX.values()) {
+                for (BackgroundPositionY vertical : BackgroundPositionY.values()) {
                     list.add(new PositionPair(horizontal, vertical));
                 }
             }
@@ -54,7 +54,7 @@ public class AdjustView extends VerticalLayout implements View {
         }
 
         public static PositionPair getDefault() {
-            return new PositionPair(HorizontalPosition.CENTER, VerticalPosition.CENTER);
+            return new PositionPair(BackgroundPositionX.CENTER, BackgroundPositionY.CENTER);
         }
 
         public String toString() {

@@ -7,9 +7,6 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
-/**
- * Created by alump on 20/03/2017.
- */
 public class MenuView extends VerticalLayout implements View {
 
     public final static String VIEW_NAME = "";

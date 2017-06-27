@@ -6,6 +6,9 @@ import java.util.Map;
 import com.vaadin.shared.ui.AbstractEmbeddedState;
 import com.vaadin.shared.ui.ContentMode;
 
+/**
+ * State class for ScaleImage
+ */
 @SuppressWarnings("serial")
 public class ScaleImageState extends AbstractEmbeddedState {
     {
@@ -14,5 +17,5 @@ public class ScaleImageState extends AbstractEmbeddedState {
     public Map<String, String> styleValues = new HashMap<String, String>();
 
     public String innerContent = null;
-    public ContentMode contentMode = ContentMode.TEXT;
+    public ContentMode innerContentMode = ContentMode.TEXT;
 }

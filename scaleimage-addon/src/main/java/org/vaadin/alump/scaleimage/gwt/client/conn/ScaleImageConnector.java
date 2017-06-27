@@ -1,7 +1,7 @@
 /**
  * ScaleImageConnector.java (ScaleImage)
  * 
- * Copyright 2013 Vaadin Ltd, Sami Viitanen <alump@vaadin.org>
+ * Copyright 2013-2017 Vaadin Ltd, Sami Viitanen <sami.viitanen@vaadin.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,9 +69,9 @@ public class ScaleImageConnector extends AbstractComponentConnector {
         	}
         }
 
-        if(getState().contentMode == ContentMode.HTML) {
+        if(getState().innerContentMode == ContentMode.HTML) {
 			getWidget().setInnerHtml(getState().innerContent);
-		} else if(getState().contentMode == ContentMode.PREFORMATTED) {
+		} else if(getState().innerContentMode == ContentMode.PREFORMATTED) {
 			PreElement preElement = Document.get().createPreElement();
 			preElement.setInnerText(getState().innerContent);
 			getWidget().getElement().removeAllChildren();
