@@ -3,9 +3,12 @@ package org.vaadin.alump.scaleimage.demo;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.StreamResource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import org.vaadin.alump.scaleimage.ScaleImage;
+
+import java.io.InputStream;
 
 /**
  * Created by alump on 20/03/2017.
@@ -94,6 +97,18 @@ public class TestView extends VerticalLayout implements View {
         alignImage.setHeight(20, Unit.PIXELS);
         alignLayout.addComponent(alignImage);
         alignLayout.setComponentAlignment(alignImage, Alignment.BOTTOM_CENTER);
+
+        ScaleImage dynImage = new ScaleImage();
+        dynImage.setWidth("300px");
+        dynImage.setHeight("200px");
+        dynImage.setSource(new StreamResource(new StreamResource.StreamSource() {
+            @Override
+            public InputStream getStream() {
+                return getClass().getClassLoader().getResourceAsStream("dynamicimage.jpg");
+            }
+        }, "dynamicimage.jpg"));
+        addComponent(dynImage);
+
 
         addComponent(new Button("Back to menu", e -> navigator.navigateTo(MenuView.VIEW_NAME)));
     }
